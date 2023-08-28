@@ -1,11 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>POST Request Test</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Landing page</h1>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form id="myForm" class="border p-4">
+                    <div class="form-group">
+                        <label for="sessionId">Session ID:</label>
+                        <input type="text" class="form-control" id="sessionId" name="sessionId" value="12345">
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceCode">Service Code:</label>
+                        <input type="text" class="form-control" id="serviceCode" name="serviceCode" value="123">
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number:</label>
+                        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="+1234567890">
+                    </div>
+                    <div class="form-group">
+                        <label for="text">Text:</label>
+                        <input type="text" class="form-control" id="text" name="text" value="1">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send POST Request</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch('https://ussd-server.vercel.app/ussd', {
+                method: 'POST',
+                body: JSON.stringify(Object.fromEntries(formData)),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.text())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
 </html>
