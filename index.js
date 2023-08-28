@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.get('/', (req, res) => {
-    res.send('server is working');
+    res.sendFile(__dirname + '/index.html');
 });
 
 app.post('/ussd', (req, res) => {
