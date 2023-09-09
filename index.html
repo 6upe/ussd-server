@@ -82,7 +82,7 @@
 
           fetch("https://ussd-server.vercel.app/", {
             method: "POST",
-            mode: "no-cors",
+            mode: "cors",
             body: JSON.stringify(combinedData),
             headers: {
               "Content-Type": "application/json",
