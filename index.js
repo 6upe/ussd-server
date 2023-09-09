@@ -5,16 +5,7 @@ const cors = require('cors');
 const app = express();
 
 // Set up CORS headers middleware
-
-// Configure CORS for preflight requests
-const corsOptions = {
-    origin: '*',
-    methods: ['GET', 'POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type'],
-    optionsSuccessStatus: 204, // Indicates preflight success without content
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

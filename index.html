@@ -39,7 +39,7 @@
 
             fetch('https://ussd-server.vercel.app/ussd', {
                 method: 'POST',
-                mode: 'cors',
+                mode: 'no-cors',
                 body: JSON.stringify(Object.fromEntries(formData)),
                 headers: {
                     'Content-Type': 'application/json'
