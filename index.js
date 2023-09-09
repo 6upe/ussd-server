@@ -4,16 +4,25 @@ const cors = require('cors');
 
 const app = express();
 
+// Set up bodyParser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
 // Set up CORS headers middleware
 app.use(cors());
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
 
 
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
+});
+
+app.post('/', (req, res) => {
+    const clientData = req.body;
+    console.log(clientData);
+    res.send(clientData);
 });
 
 app.post('/ussd', (req, res) => {
